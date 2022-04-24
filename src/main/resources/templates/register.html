@@ -1,0 +1,60 @@
+<html lang="en" xmlns:text-align="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Please sign in</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <form class="form-signin" method="post" action="/register" th:object="${userDto}">
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+        </p>
+        <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+        </p>
+        <p>
+            <label for="matchingPassword" class="sr-only">Matching password</label>
+            <input type="password" id="matchingPassword" name="matchingPassword" class="form-control" placeholder="Confirm password" required="">
+        </p>
+        <p>
+<!--            <div id="error">-->
+<!--            <div th:if="${#fields.hasAnyErrors()}" th:errors="*{error}" class="item fieldinvalid" ></div>-->
+            <div th:if="${#fields.hasErrors('*')}">
+                <p th:each="err : ${#fields.errors('*')}">
+                    <span th:text="${err}"></span>
+                </p>
+            </div>
+<!--            </div>-->
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    </form>
+</div>
+</body>
+<script class="validator" th:inline="javascript">
+    const password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+        if(password.value !== confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+<span style="--colorTabBar:var(--colorAccentBg); --colorFg:#b8bcc1; --colorFgAlpha:#b8bcc11a; --colorFgIntense:#dde2e7; --colorFgFaded:#afb3b8; --colorFgFadedMore:#a6aaae; --colorFgFadedMost:#939699; --colorBg:#363636; --colorBgAlpha:#363636e6; --colorBgAlphaHeavy:#363636a6; --colorBgAlphaHeavier:#36363640; --colorBgAlphaBlur:#363636bf; --colorBgDark:#303030; --colorBgDarker:#2a2a2a; --colorBgLight:#3a3a3a; --colorBgLighter:#4a4a4a; --colorBgLightIntense:#3e3e3e; --colorBgIntense:#2a2a2a; --colorBgIntenser:#232323; --colorBgIntserAlpha:#1f1f1feb; --colorBgInverse:#3a3a3a; --colorBgInverser:#464646; --colorBgFaded:#424242; --colorHighlightBg:#f9d267; --colorHighlightBgUnfocused:#5c5c5c; --colorHighlightBgAlpha:#f9d2671a; --colorHighlightBgDark:#deb94f; --colorHighlightFg:#000000; --colorHighlightFgAlpha:#00000080; --colorHighlightFgAlphaHeavy:#00000040; --colorAccentBg:#1d1c1b; --colorAccentBgAlpha:#4c4b4a66; --colorAccentBgAlphaHeavy:#4c4b4a40; --colorAccentBgDark:#0d0b09; --colorAccentBgDarker:#000000; --colorAccentBgFaded:#111111; --colorAccentBgFadedMore:#302f2e; --colorAccentBgFadedMost:#4c4b4a; --colorAccentBorder:#1d1c1b; --colorAccentBorderDark:#141312; --colorAccentFg:#ffffff; --colorAccentFgFaded:#c6c6c6; --colorAccentFgAlpha:#ffffff40; --colorBorder:#232323; --colorBorderDisabled:#2b2b2b; --colorBorderSubtle:#282828; --colorBorderIntense:#141414; --colorSuccessBg:#06a700; --colorSuccessBgAlpha:#06a7001a; --colorSuccessFg:#ffffff; --colorWarningBg:#efaf00; --colorWarningBgAlpha:#efaf001a; --colorWarningFg:#000000; --colorErrorBg:#c64539; --colorErrorBgAlpha:#c645391a; --colorErrorFg:#ffffff; --colorWindowBg:#1d1e21; --colorWindowFg:#ffffff; --radiusRound:0; --radiusRounded:0; --radiusRoundedLess:0; --radius:-1px; --radiusHalf:-0.5px; --scrollbarWidth:12px;"></span></html>
