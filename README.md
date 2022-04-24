@@ -2,6 +2,6 @@
 
 Login/logout with registration
 
-Hardcoded users:
-user:user with role USER
+Hardcoded users:  
+user:user with role USER  
 admin:admin with role ADMIN
