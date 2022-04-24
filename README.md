@@ -1,5 +1,4 @@
-# demo
-Spring Security + Thymeleaf
+# Spring Security + Thymeleaf
 
 Login/logout with registration
 
